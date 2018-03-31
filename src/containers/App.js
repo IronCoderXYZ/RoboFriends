@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import CardList from './CardList';
-import SearchBox from './SearchBox';
+import CardList from '../components/CardList';
+import SearchBox from '../components/SearchBox';
 
 export default class App extends Component {
   state = { robots: [], searchInput: '' };
@@ -20,9 +20,9 @@ export default class App extends Component {
     const filteredRobots = robots.filter(robot =>
       robot.name.toLowerCase().includes(searchInput.toLowerCase())
     );
-    if (robots.length === 0)
-      return <h1 className="ma0 pa3 f1 lh-title yellow">Loading</h1>;
-    return (
+    return !robots.length ? (
+      <h1 className="ma0 pa3 f1 lh-title yellow">Loading</h1>
+    ) : (
       <div className="tc">
         <h1 className="ma0 pa3 f1 lh-title yellow">Robo Friends</h1>
         <SearchBox input={searchInput} onChange={this.onSearchChange} />
